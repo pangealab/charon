@@ -18,11 +18,14 @@ LABEL org.opencontainers.image.title="Charon" \
       org.opencontainers.image.source="https://github.com/pangealab/charon.git" \
       org.opencontainers.image.revision=$IMAGE_SOURCE_REVISION
 
-# Install Tools
-RUN apt -q update && apt -q dist-upgrade
-#     apt-get install -y wget vim curl iputils-ping jq &&\
-#     apt-get install -yq kali-linux-headless &&\
+RUN apt-get -q update &&\
+    apt-get install -y wget vim curl iputils-ping jq &&\
+#     apt-get install -yq kali-linux-headless &&\    
 #     apt-get install -yq man-db exploitdb &&\
-#     apt-get clean &&\
-#     rm -rf /var/lib/apt/lists/* &&\
-#     rm -rf /tmp/*
+    apt-get clean &&\
+    rm -rf /var/lib/apt/lists/* &&\
+    rm -rf /tmp/*
+
+# Mark Volumes
+VOLUME /root
+VOLUME /var/lib/postgresql
