@@ -1,2 +1,3 @@
-# charon
-Docker &amp; Kubernetes Kali offensive toolkit
+![Intro](./docs/charon.jpg)
+
+Docker and Kubernetes Kali offensive toolkit
