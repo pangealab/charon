@@ -21,8 +21,8 @@ LABEL org.opencontainers.image.title="Charon" \
 RUN apt-get update &&\
     apt-get install -y wget vim curl iputils-ping jq &&\
     apt-get install -y traceroute net-tools iputils-ping netbase iproute2 &&\
-#     apt-get install -yq kali-linux-headless &&\    
-#     apt-get install -yq man-db exploitdb &&\
+    apt-get install -yq kali-linux-headless &&\    
+    apt-get install -yq man-db exploitdb &&\
     apt-get clean &&\
     rm -rf /var/lib/apt/lists/* &&\
     rm -rf /tmp/*
