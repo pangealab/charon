@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: charon
+  labels:
+    app: charon
+    monitor: 'true'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: charon
+  template:
+    metadata:
+      labels:
+        app: charon
+        monitor: 'true'
+    spec:
+      containers:
+      - name: charon
+        image: pangealab/charon:latest
