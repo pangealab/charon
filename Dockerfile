@@ -26,4 +26,4 @@ RUN apt update &&\
     apt clean
 
 # Install Tools
-RUN apt install -y kali-tools-top10
+RUN apt install -y kali-linux-headless
