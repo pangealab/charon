@@ -18,7 +18,7 @@ LABEL org.opencontainers.image.title="Charon" \
       org.opencontainers.image.source="https://github.com/pangealab/charon.git" \
       org.opencontainers.image.revision=$IMAGE_SOURCE_REVISION
 
-RUN apt-get update &&\
+RUN apt-get -q update &&\
     apt-get install -y wget vim curl iputils-ping jq &&\
     apt-get install -y traceroute net-tools iputils-ping netbase iproute2 &&\
     apt-get install -yq kali-linux-headless &&\    
