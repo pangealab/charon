@@ -30,3 +30,10 @@ RUN apt-get -q update &&\
 # Mark Volumes
 VOLUME /root
 VOLUME /var/lib/postgresql
+
+# Configure Start
+ADD ./start.sh /opt
+RUN chmod +x /opt/start.sh
+
+# Start Pod
+CMD ["/opt/start.sh"]
