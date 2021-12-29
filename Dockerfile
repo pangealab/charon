@@ -19,7 +19,7 @@ LABEL org.opencontainers.image.title="Charon" \
       org.opencontainers.image.revision=$IMAGE_SOURCE_REVISION
 
 # Install Tools
-RUN apt-get update && time apt-get dist-upgrade &&\
+RUN apt-get update && apt-get dist-upgrade &&\
     apt-get install -yq wget vim curl iputils-ping jq &&\
     apt-get install -yq kali-linux-headless &&\
     apt-get install -yq man-db exploitdb &&\
