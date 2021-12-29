@@ -23,6 +23,6 @@ RUN apt-get update && apt-get dist-upgrade &&\
     apt-get install -yq wget vim curl iputils-ping jq &&\
     apt-get install -yq kali-linux-headless &&\
     apt-get install -yq man-db exploitdb &&\
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
+    apt-get clean &&\
+    rm -rf /var/lib/apt/lists/* &&\
     rm -rf /tmp/*
