@@ -18,12 +18,11 @@ LABEL org.opencontainers.image.title="Charon" \
       org.opencontainers.image.source="https://github.com/pangealab/charon.git" \
       org.opencontainers.image.revision=$IMAGE_SOURCE_REVISION
 
-
-# Update O/S
-RUN apt update &&\
-    apt -y dist-upgrade &&\
-    apt autoremove &&\
-    apt clean
-
 # Install Tools
-RUN apt install -y kali-linux-headless
+RUN apt-get update && time apt-get dist-upgrade &&\
+    apt-get install -yq wget vim curl iputils-ping jq &&\
+    apt-get install -yq kali-linux-headless &&\
+    apt-get install -yq man-db exploitdb &&\
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /tmp/*
