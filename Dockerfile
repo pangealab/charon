@@ -27,10 +27,6 @@ RUN apt-get -q update &&\
     rm -rf /var/lib/apt/lists/* &&\
     rm -rf /tmp/*
 
-# Mark Volumes
-VOLUME /root
-VOLUME /var/lib/postgresql
-
 # Configure Start
 ADD ./start.sh /opt
 RUN chmod +x /opt/start.sh
