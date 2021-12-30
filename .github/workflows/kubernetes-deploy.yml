@@ -47,4 +47,4 @@ jobs:
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
       with:
-        args: apply -n sandbox -f yaml/deploy-charon.yaml
+        args: apply -n kali -f yaml/deploy-charon.yaml
