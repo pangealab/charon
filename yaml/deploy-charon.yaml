@@ -11,25 +11,25 @@ spec:
     volumeMounts:
     - name: kali-root
       mountPath: /root
-    # - name: kali-postgres
-    #   mountPath: /var/lib/postgresql/14/main
+    - name: kali-postgres
+      mountPath: /var/lib/postgresql
   # initContainers:
   # - name: change-ownership-container
   #   image: busybox
-  #   command: ["/bin/chown","-R","117:125","/var/lib/postgresql/14/main"]
+  #   command: ["/bin/chown","-R","117:125","/var/lib/postgresql"]
   #   securityContext:
   #     runAsUser: 0
   #     privileged: true
   #   volumeMounts:
   #   - name: kali-postgres
-  #     mountPath: /var/lib/postgresql/14/main
+  #     mountPath: /var/lib/postgresql
   volumes:
   - name: kali-root
     persistentVolumeClaim:
       claimName: kali-root
-  # - name: kali-postgres
-  #   persistentVolumeClaim:
-  #     claimName: kali-postgres
+  - name: kali-postgres
+    persistentVolumeClaim:
+      claimName: kali-postgres
 ---      
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -43,16 +43,16 @@ spec:
   resources:
     requests:
       storage: 5Gi
-# ---
-# kind: PersistentVolumeClaim
-# apiVersion: v1
-# metadata:
-#   name: kali-postgres
-#   labels:
-#     app: charon  
-# spec:
-#   accessModes:
-#     - ReadWriteOnce
-#   resources:
-#     requests:
-#       storage: 10Gi  
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: kali-postgres
+  labels:
+    app: charon  
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi  
