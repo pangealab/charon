@@ -13,24 +13,7 @@ env:
 #   pull_request:
 #     branches: [ master ]
 on: 
-  workflow_dispatch:
-    inputs:
-      instanceUrl:
-        description: 'Instance URL'
-        required: true
-        default: 'default-url'
-      midUserName:
-        description: 'MID User Name'
-        required: true
-        default: 'default-user'
-      midPassword:
-        description: 'MID Password'
-        required: true
-        default: 'default-password'
-      midName:
-        description: 'MID Name'
-        required: true
-        default: 'default-host'
+  [workflow_dispatch]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -57,21 +40,11 @@ jobs:
         role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
         role-duration-seconds: 900
         role-session-name: github
-        
-    # Substitute Variables
-    - name: Substitute Variables
-      env:
-        INSTANCE_URL: ${{ github.event.inputs.instanceUrl }}
-        MID_USERNAME: ${{ github.event.inputs.midUserName }}
-        MID_PASSWORD: ${{ github.event.inputs.midPassword }}
-        MID_NAME: ${{ github.event.inputs.midName }}
-      run: | 
-        envsubst < yaml/deploy-deimos.yaml > yaml/deploy-deimos.yaml.subst
-      
+            
     # Deploy to Kubernetes
     - name: Deploy to Kubernetes
       uses: pangealab/kratos@master
       env:
         KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
       with:
-        args: apply -n sandbox -f yaml/deploy-deimos.yaml.subst
+        args: apply -n sandbox -f yaml/deploy-charon.yaml
