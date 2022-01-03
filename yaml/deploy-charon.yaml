@@ -8,21 +8,14 @@ spec:
   containers:
   - name: charon
     image: pangealab/charon:latest
+    env:
+    # - name: KEY
+    #   value: VALUE
     volumeMounts:
     - name: kali-root
       mountPath: /root
     - name: kali-postgres
-      mountPath: /var/lib/postgresql
-  # initContainers:
-  # - name: change-ownership-container
-  #   image: busybox
-  #   command: ["/bin/chown","-R","117:125","/var/lib/postgresql"]
-  #   securityContext:
-  #     runAsUser: 0
-  #     privileged: true
-  #   volumeMounts:
-  #   - name: kali-postgres
-  #     mountPath: /var/lib/postgresql
+      mountPath: /var/lib/postgresql/data
   volumes:
   - name: kali-root
     persistentVolumeClaim:
