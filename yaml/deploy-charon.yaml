@@ -1,3 +1,18 @@
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: charon
+#   labels:
+#     app: charon
+# spec:
+#   type: LoadBalancer
+#   ports:
+#   - port: 389
+#     targetPort: 389
+#   selector:
+#     app: castor       
+---
 apiVersion: v1
 kind: Pod
 metadata:
@@ -8,6 +23,8 @@ spec:
   containers:
   - name: charon
     image: pangealab/charon:latest
+    ports:
+    # - containerPort: 389
     env:
     # - name: KEY
     #   value: VALUE
@@ -23,7 +40,7 @@ spec:
   - name: kali-postgres
     persistentVolumeClaim:
       claimName: kali-postgres
----      
+---
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
@@ -48,4 +65,4 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi  
+      storage: 10Gi
